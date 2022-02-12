@@ -79,12 +79,12 @@ export default function useRipple<T extends HTMLElement = any>(inputOptions?: Pa
                 for (const event of events)
                     void self.removeEventListener(event, cancelRipple);
             }
-            if (!options.cancelAutomatically)
+            if (!options.cancelAutomatically && !isTouchDevice())
                 for (const event of events)
                     void self.addEventListener(event, cancelRipple);
             else
                 setTimeout(() => void cancelRippleAnimation(ripple, options), options.duration * completedFactor);
-            
+
             void target.appendChild(ripple);
             void options.onSpawn?.({
                 ripple,
@@ -173,4 +173,11 @@ function cancelRippleAnimation<T extends HTMLElement>(element: T, options: Omit<
             if (e.propertyName === "opacity") void element.remove();
         });
     });
+}
+
+/** taken from https://stackoverflow.com/a/4819886/13188385 */
+function isTouchDevice(): boolean {
+    return (("ontouchstart" in window) ||
+        (navigator.maxTouchPoints > 0) ||
+        ((navigator as any)?.msMaxTouchPoints ?? 0 > 0));
 }
