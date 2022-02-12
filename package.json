@@ -1,10 +1,15 @@
 {
-  "name": "use-ripple",
-  "version": "1.0.0",
+  "name": "use-ripple-hook",
+  "version": "1.0.2",
+  "repository": {
+    "url": "https://github.com/asplunds/use-ripple"
+  },
   "description": "Customizable, lightweight React hook for implementing Google's Material UI style ripple effect",
   "main": "ripple.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepack": "tsc",
+    "postpublish": "tsc --build --clean"
   },
   "keywords": [
     "useripple",
@@ -15,5 +20,8 @@
     "hook"
   ],
   "author": "Jonathan Asplund",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^4.5.5"
+  }
 }

@@ -1,25 +1,24 @@
 # useRipple - Material UI ripple effect
 Fully customizable, lightweight React hook for implementing Google's Material UI style ripple effect
 
-<div align="center">
 
 ![useRipple showcase GIF](https://i.imgur.com/P844g7d.gif "useRipple showcase")
 
-</div>
+[![Edit great-nash-zhyfm](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/great-nash-zhyfm?fontsize=14&hidenavigation=1&theme=dark)
 
 ## Installation
 ```
-npm install use-ripple
+npm install use-ripple-hook
 ```
 or
 ```
-yarn add use-ripple
+yarn add use-ripple-hook
 ```
 
 ## Usage
 ```tsx
 import React from "react";
-import useRipple from "use-ripple";
+import useRipple from "use-ripple-hook";
 
 function Button() {
     const [ripple, event] = useRipple();
@@ -90,7 +89,7 @@ As demonstrated in the below GIF, useRipple adjusts the circle size according to
 ![useRipple showcase GIF](https://i.imgur.com/OU9YJAh.gif "image Title")
 
 ## Examples
-For examples of useRipple usage please click here.
+For examples of useRipple usage please click [here](https://codesandbox.io/s/great-nash-zhyfm?file=/src/App.tsx).
 
 ## Contributing
 Contributions of any form are appreciated, opening issues on the Github as well as creating pull requests are both welcome for anyone.
