@@ -89,8 +89,85 @@ As demonstrated in the below GIF, useRipple adjusts the circle size according to
 
 ![useRipple showcase GIF](https://i.imgur.com/OU9YJAh.gif "image Title")
 
+## Higher order function (HOF)
+
+If you want to memoize a configuration for your ripple you can use the built in `customRipple()` function.
+
+You can override the options you memoized for your custom ripple hook. The two options will be merged.
+### Usage
+```tsx
+import { customRipple } from "use-ripple-hook";
+
+const useMyRipple = customRipple({
+    color: "rgb(144, 238, 144, .7)",
+    duration: 700,
+});
+
+function Button() {
+    const [ripple, event] = useMyRipple({}); // Optionally override previous config
+
+    return (
+        <button ref={ripple} onMouseDown={event}>
+            Memoized Ripple
+        </button>
+    );
+}
+```
+
+This is useful if you want to avoid repetition in your code or if you want multiple different ripple effects for different components.
+
 ## Examples
-For examples of useRipple usage please click [here](https://codesandbox.io/s/great-nash-zhyfm?file=/src/App.tsx).
+For examples of useRipple usage please click <a target="_blank" href="https://codesandbox.io/s/great-nash-zhyfm?file=/src/App.tsx">here</a>.
+
+## Dos and don'ts
+### ✔ Do this:
+Using components 👍
+```jsx
+import React from "react";
+import useRipple from "use-ripple-hook";
+
+function App() {
+    return (
+        <>
+            <Button color="red" />
+            <Button color="yellow" />
+        </>
+    )
+}
+
+function Button({ color }) {
+    const [ripple, event] = useRipple({ color });
+
+    return (
+        <button ref={ripple} onMouseDown={event}>
+            Button
+        </button>
+    );
+}
+```
+
+### ❌ Don't do this:
+Sharing references 👎
+```jsx
+import React from "react";
+import useRipple from "use-ripple-hook";
+
+function App() {
+    const [ripple, event] = useRipple();
+
+    /* This will NOT work! Do not do this */
+    return (
+        <>
+            <button color="red" ref={ripple} onMouseDown={even}>
+                Button
+            </button>
+            <button color="yellow" ref={ripple} onMouseDown={even}>
+                Button
+            </button>
+        </>
+    )
+}
+```
 
 ## Contributing
 Contributions of any form are appreciated, opening issues on the Github as well as creating pull requests are both welcome for anyone.
