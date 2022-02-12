@@ -81,13 +81,17 @@ export default function useRipple<T extends HTMLElement = any>(inputOptions?: Pa
         else
             setTimeout(() => void cancelRippleAnimation(ripple, options), options.duration * completedFactor)
 
-        void target.appendChild(ripple);
-        void options.onSpawn?.({
-            ripple,
-            cancelRipple,
-            event,
-            ref,
+        // Used to ensure overflow: hidden is registered properly on IOS Safari before ripple is shown
+        void requestAnimationFrame(() => {
+            void target.appendChild(ripple);
+            void options.onSpawn?.({
+                ripple,
+                cancelRipple,
+                event,
+                ref,
+            });
         });
+
     }, [ref, options]);
 
     return [ref, event] as const;

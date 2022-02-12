@@ -178,7 +178,7 @@ What I was looking for:
 - Implementation controlled trigger (events)
 - Ripple to linger before fading away (hold down) which can be opted out of
 
-I therefore create this simple yet powerful hook which can be reused, memoized and customized to fit any element and use case.
+I therefore created this simple yet powerful hook which can be reused, memoized and customized to fit any element and use case.
 
 The philosophy behind this library hinges on the idea that libraries should not unnecessarily limit the user, but merely to provide the means to implement what the user wants. Obviously this is impossible to follow faithfully. However, I've done my best to follow this principle hence the rich options. If that isn't enough, I've provided a callback where you can gain full control over each individual ripple as it spawns.
 
