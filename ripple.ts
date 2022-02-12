@@ -62,27 +62,29 @@ export default function useRipple<T extends HTMLElement = any>(inputOptions?: Pa
             ], target);
 
         if (!target) return;
-        const begun = Date.now();
-        const ripple = centerElementToPointer(event, target, createRipple(target, event, options));
-        const events = ["mouseup", "touchend"] as const;
-        const cancelRipple = () => {
-            const now = Date.now();
-            const diff = now - begun;
-            // Ensure the transform animation is complete before cancellation
-            void setTimeout(() => {
-                void cancelRippleAnimation(ripple, options);
-            }, diff > .4 * options.duration ? 0 : completedFactor * options.duration - diff)
-            for (const event of events)
-                void self.removeEventListener(event, cancelRipple);
-        }
-        if (!options.cancelAutomatically)
-            for (const event of events)
-                void self.addEventListener(event, cancelRipple);
-        else
-            setTimeout(() => void cancelRippleAnimation(ripple, options), options.duration * completedFactor)
+
 
         // Used to ensure overflow: hidden is registered properly on IOS Safari before ripple is shown
         void requestAnimationFrame(() => {
+            const begun = Date.now();
+            const ripple = centerElementToPointer(event, target, createRipple(target, event, options));
+            const events = ["mouseup", "touchend"] as const;
+            const cancelRipple = () => {
+                const now = Date.now();
+                const diff = now - begun;
+                // Ensure the transform animation is complete before cancellation
+                void setTimeout(() => {
+                    void cancelRippleAnimation(ripple, options);
+                }, diff > .4 * options.duration ? 0 : completedFactor * options.duration - diff)
+                for (const event of events)
+                    void self.removeEventListener(event, cancelRipple);
+            }
+            if (!options.cancelAutomatically)
+                for (const event of events)
+                    void self.addEventListener(event, cancelRipple);
+            else
+                setTimeout(() => void cancelRippleAnimation(ripple, options), options.duration * completedFactor);
+            
             void target.appendChild(ripple);
             void options.onSpawn?.({
                 ripple,
