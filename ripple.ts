@@ -14,7 +14,7 @@ export type Options<T extends HTMLElement = any> = {
 
         /** the ref to the ripple host element */
         readonly ref: React.RefObject<T>;
-        
+
         /** the event that triggered the ripple (ts: casting required) */
         readonly event: unknown;
     }) => void;
@@ -53,9 +53,13 @@ export default function useRipple<T extends HTMLElement = any>(inputOptions?: Pa
     const event = useCallback((event: MinimalEvent) => {
         if (!ref.current || options.disabled) return;
         const target = applyStyles([
-            ["position", "relative"],
             ["overflow", "hidden"],
         ], ref.current);
+
+        if (window.getComputedStyle(target).position === "static")
+            void applyStyles([
+                ["position", "relative"],
+            ], target);
 
         if (!target) return;
         const begun = Date.now();
