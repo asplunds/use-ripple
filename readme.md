@@ -2,7 +2,7 @@
 Fully customizable, lightweight React hook for implementing Google's Material UI style ripple effect
 
 
-![useRipple showcase GIF](https://i.imgur.com/P844g7d.gif "useRipple showcase")
+![useRipple showcase GIF](https://i.imgur.com/8yu6uaR.gif "useRipple showcase")
 
 [![Edit great-nash-zhyfm](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/great-nash-zhyfm?fontsize=14&hidenavigation=1&theme=dark)
 
