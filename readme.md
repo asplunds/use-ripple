@@ -170,4 +170,4 @@ function App() {
 ```
 
 ## Contributing
-Contributions of any form are appreciated, opening issues on the Github as well as creating pull requests are both welcome for anyone.
+Contributions of any form are appreciated, opening issues on the Github repository as well as creating pull requests are both welcomed for anyone to do.
