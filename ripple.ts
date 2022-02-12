@@ -31,10 +31,10 @@ const self = document;
 const completedFactor = .4;
 
 /**
- * useRipple - Material UI style ripple effect react hook.
+ * useRipple - Material UI style ripple effect React hook
  * @author Jonathan Asplund <jonathan@asplund.net>
  * @param inputOptions Ripple options
- * @returns Ripple ref, assign this ref to the element you want to have a ripple effect
+ * @returns Tuple `[ref, event]`. See https://github.com/asplunds/use-ripple for usage
  */
 export default function useRipple<T extends HTMLElement = any>(inputOptions?: Partial<Options<T>>) {
 
@@ -69,7 +69,7 @@ export default function useRipple<T extends HTMLElement = any>(inputOptions?: Pa
             const now = Date.now();
             const diff = now - begun;
             // Ensure the transform animation is complete before cancellation
-            setTimeout(() => {
+            void setTimeout(() => {
                 void cancelRippleAnimation(ripple, options);
             }, diff > .4 * options.duration ? 0 : completedFactor * options.duration - diff)
             for (const event of events)
