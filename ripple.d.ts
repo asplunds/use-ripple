@@ -27,6 +27,7 @@ export declare type MinimalEvent = {
     clientY: number;
     nativeEvent?: {
         which?: number;
+        type?: string;
     };
 };
 /**

@@ -75,7 +75,6 @@ export default function useRipple<T extends HTMLElement = any>(
                     event.nativeEvent?.type === "mousedown")
             )
                 return;
-            console.log(event);
             const target = ref.current;
             if (window.getComputedStyle(target).position === "static")
                 void applyStyles([["position", "relative"]], target);
