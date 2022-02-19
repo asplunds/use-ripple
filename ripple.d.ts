@@ -4,6 +4,9 @@ export declare type Options<T extends HTMLElement = any> = {
     color: string;
     timingFunction: string;
     disabled?: boolean;
+    className: string;
+    containerClassName: string;
+    ignoreNonLeftClick: boolean;
     onSpawn?: (ctx: {
         /** the ripple element */
         readonly ripple: HTMLDivElement;
@@ -13,6 +16,8 @@ export declare type Options<T extends HTMLElement = any> = {
         readonly ref: React.RefObject<T>;
         /** the event that triggered the ripple (ts: casting required) */
         readonly event: unknown;
+        /** the ripple container element */
+        readonly container: HTMLDivElement;
     }) => void;
     cancelAutomatically: boolean;
     ref: React.RefObject<T>;
@@ -20,6 +25,9 @@ export declare type Options<T extends HTMLElement = any> = {
 export declare type MinimalEvent = {
     clientX: number;
     clientY: number;
+    nativeEvent?: {
+        which?: number;
+    };
 };
 /**
  * useRipple - Material UI style ripple effect React hook

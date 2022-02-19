@@ -38,6 +38,8 @@ useRipple({
     duration: 450,
     color: "rgba(255, 255, 255, .3)",
     cancelAutomatically: false,
+    className: "__useRipple--ripple",
+    containerClassName: "__useRipple--ripple-container",
     timingFunction: "cubic-bezier(.42,.36,.28,.88)",
     disabled: false,
     ref: internalRef,
@@ -45,15 +47,18 @@ useRipple({
 });
 ```
 ### Options reference
-| Property              | Description                                                        | Type                               | Default                         | Optional |
-| --------------------- | ------------------------------------------------------------------ | ---------------------------------- | ------------------------------- | -------- |
-| `duration`            | Duration in milliseconds of the ripple effect                      | `number`                           | `450`                           | ✔️        |
-| `color`               | Color of the ripple effect                                         | `string`                           | `rgba(255, 255, 255, .3)`       | ✔️        |
-| `cancelAutomatically` | If true, the ripple will begin to cancel after 40% of the duration | `boolean`                          | `false`                         | ✔️        |
-| `timingFunction`      | Transition timing function of the transform animation              | `string`                           | `cubic-bezier(.42,.36,.28,.88)` | ✔️        |
-| `disabled`            | If true, no ripple will be spawned                                 | `boolean`                          | `false`                         | ✔️        |
-| `ref`                 | Optional outside ref, if unset, internal ref will be used          | `React.RefObject<T>`               | `undefined`                     | ✔️        |
-| `onSpawn`             | A callback which is triggered when a ripple is spawned             | [options.onspawn](#optionsonspawn) | `undefined`                     | ✔️        |
+| Property              | Description                                                                                   | Type                               | Default                         | Optional |
+| --------------------- | --------------------------------------------------------------------------------------------- | ---------------------------------- | ------------------------------- | -------- |
+| `duration`            | Duration in milliseconds                                                                      | `number`                           | `450`                           | ✔️        |
+| `color`               | Color of the ripple effect                                                                    | `string`                           | `rgba(255, 255, 255, .3)`       | ✔️        |
+| `cancelAutomatically` | If `true`, the ripple will begin to cancel after 40% of the duration                            | `boolean`                          | `false`                         | ✔️        |
+| `className`           | The ripple element's class name                                                               | `string`                           | `__useRipple--ripple`           | ✔️        |
+| `containerClassName`  | The container element for the ripples                                                         | `string`                           | `__useRipple--ripple-container` | ✔️        |
+| `ignoreNonLeftClick`  | If `false`, non left click events such as right click and middle click will also trigger ripple | `boolean`                          | `true`                          | ✔️        |
+| `timingFunction`      | Transition timing function of the transform animation                                         | `string`                           | `cubic-bezier(.42,.36,.28,.88)` | ✔️        |
+| `disabled`            | If `true`, no ripple will be spawned                                                            | `boolean`                          | `false`                         | ✔️        |
+| `ref`                 | Optional outside ref, if unset, internal ref will be used                                     | `React.RefObject<T>`               | `undefined`                     | ✔️        |
+| `onSpawn`             | A callback which is triggered when a ripple is spawned                                        | [options.onspawn](#optionsonspawn) | `undefined`                     | ✔️        |
 
 ### `options.onSpawn`
 **Type**
@@ -67,20 +72,23 @@ type OnSpawnCB = (ctx: {
 
     /** the ref to the ripple host element */
     readonly ref: React.RefObject<T>;
-    
+
     /** the event that triggered the ripple (ts: casting required) */
     readonly event: unknown;
+
+    /** the ripple container element */
+    readonly container: HTMLDivElement;
 }) => void;
 ```
 **Example**
 ```js
 useRipple({
-    /* ... */
-    onSpawn: ({
-      ripple, ref, event  
-    }) => {
-        console.table({ ripple, ref, event });
-    }
+  /* ... */
+  onSpawn: ({
+    ripple, ref, event, container
+  }) => {
+    console.table({ ripple, ref, event, container });
+  }
 });
 ```
 
