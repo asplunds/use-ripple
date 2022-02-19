@@ -48,18 +48,18 @@ useRipple({
 });
 ```
 ### Options reference
-| Property              | Description                                                                                   | Type                               | Default                         | Optional |
-| --------------------- | --------------------------------------------------------------------------------------------- | ---------------------------------- | ------------------------------- | -------- |
-| `duration`            | Duration in milliseconds                                                                      | `number`                           | `450`                           | ✔️        |
-| `color`               | Color of the ripple effect                                                                    | `string`                           | `rgba(255, 255, 255, .3)`       | ✔️        |
-| `cancelAutomatically` | If `true`, the ripple will begin to cancel after 40% of the duration                            | `boolean`                          | `false`                         | ✔️        |
-| `className`           | The ripple element's class name                                                               | `string`                           | `__useRipple--ripple`           | ✔️        |
-| `containerClassName`  | The container element for the ripples                                                         | `string`                           | `__useRipple--ripple-container` | ✔️        |
-| `ignoreNonLeftClick`  | If `false`, non left click events such as right click and middle click will also trigger ripple | `boolean`                          | `true`                          | ✔️        |
-| `timingFunction`      | Transition timing function of the transform animation                                         | `string`                           | `cubic-bezier(.42,.36,.28,.88)` | ✔️        |
-| `disabled`            | If `true`, no ripple will be spawned                                                            | `boolean`                          | `false`                         | ✔️        |
-| `ref`                 | Optional outside ref, if unset, internal ref will be used                                     | `React.RefObject<T>`               | `undefined`                     | ✔️        |
-| `onSpawn`             | A callback which is triggered when a ripple is spawned                                        | [options.onspawn](#optionsonspawn) | `undefined`                     | ✔️        |
+| Property              | Description                                                                                      | Type                               | Default                         | Optional |
+| --------------------- | ------------------------------------------------------------------------------------------------ | ---------------------------------- | ------------------------------- | -------- |
+| `duration`            | Duration in milliseconds                                                                         | `number`                           | `450`                           | ✔️        |
+| `color`               | Color of the ripple effect                                                                       | `string`                           | `rgba(255, 255, 255, .3)`       | ✔️        |
+| `cancelAutomatically` | If `true`, the ripple will begin to cancel after 40% of the duration                             | `boolean`                          | `false`                         | ✔️        |
+| `className`           | The ripple element's class name                                                                  | `string`                           | `__useRipple--ripple`           | ✔️        |
+| `containerClassName`  | The container element for the ripples                                                            | `string`                           | `__useRipple--ripple-container` | ✔️        |
+| `ignoreNonLeftClick`  | If `false`, non left click events such as right click and middle click will also trigger ripples | `boolean`                          | `true`                          | ✔️        |
+| `timingFunction`      | Transition timing function of the transform animation                                            | `string`                           | `cubic-bezier(.42,.36,.28,.88)` | ✔️        |
+| `disabled`            | If `true`, no ripples will be spawned                                                            | `boolean`                          | `false`                         | ✔️        |
+| `ref`                 | Optional outside ref, if unset, internal ref will be used                                        | `React.RefObject<T>`               | `undefined`                     | ✔️        |
+| `onSpawn`             | A callback which is triggered when a ripple is spawned                                           | [options.onspawn](#optionsonspawn) | `undefined`                     | ✔️        |
 
 ### `options.onSpawn`
 **Type**
