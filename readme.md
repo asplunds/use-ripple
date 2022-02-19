@@ -40,6 +40,7 @@ useRipple({
     cancelAutomatically: false,
     className: "__useRipple--ripple",
     containerClassName: "__useRipple--ripple-container",
+    ignoreNonLeftClick: true,
     timingFunction: "cubic-bezier(.42,.36,.28,.88)",
     disabled: false,
     ref: internalRef,
