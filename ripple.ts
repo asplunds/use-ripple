@@ -33,6 +33,7 @@ export type MinimalEvent = {
     clientY: number;
     nativeEvent?: {
         which?: number;
+        type?: string;
     };
 };
 
@@ -69,9 +70,12 @@ export default function useRipple<T extends HTMLElement = any>(
             if (
                 !ref.current ||
                 options.disabled ||
-                (options.ignoreNonLeftClick && event.nativeEvent?.which !== 1)
+                (options.ignoreNonLeftClick &&
+                    event.nativeEvent?.which !== 1 &&
+                    event.nativeEvent?.type === "mousedown")
             )
                 return;
+            console.log(event);
             const target = ref.current;
             if (window.getComputedStyle(target).position === "static")
                 void applyStyles([["position", "relative"]], target);
