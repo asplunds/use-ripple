@@ -81,9 +81,10 @@ export default function useRipple<T extends HTMLElement = any>(
 
             if (!target) return;
 
-            const existingContainer = target
-                .getElementsByClassName(options.containerClassName)
-                .item(0);
+            const existingContainer = target.querySelector(
+                `:scope > ${options.containerClassName}`
+            );
+
             const container =
                 existingContainer ??
                 createRippleContainer(options.containerClassName);
