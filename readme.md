@@ -94,7 +94,7 @@ useRipple({
 ```
 
 ## Perfect circle
-As demonstrated in the below GIF, useRipple adjusts the circle size according to always for the host element's box.
+As demonstrated in the below GIF, useRipple adjusts the circle size to always for the host element's border box.
 
 ![useRipple showcase GIF](https://i.imgur.com/OU9YJAh.gif "image Title")
 
