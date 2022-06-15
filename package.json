@@ -1,6 +1,6 @@
 {
   "name": "use-ripple-hook",
-  "version": "1.0.20",
+  "version": "1.0.21",
   "repository": {
     "url": "https://github.com/asplunds/use-ripple"
   },
@@ -22,6 +22,7 @@
   "license": "ISC",
   "types": "./ripple.d.ts",
   "devDependencies": {
+    "@types/react": "^18.0.12",
     "typescript": "^4.5.5"
   }
 }

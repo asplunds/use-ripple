@@ -37,7 +37,7 @@ export type MinimalEvent = {
     };
 };
 
-const self = document;
+const self = () => document;
 const completedFactor = 0.4;
 const className = "__useRipple--ripple";
 const containerClassName = "__useRipple--ripple-container";
@@ -113,11 +113,11 @@ export default function useRipple<T extends HTMLElement = any>(
                             : completedFactor * options.duration - diff
                     );
                     for (const event of events)
-                        void self.removeEventListener(event, cancelRipple);
+                        void self().removeEventListener(event, cancelRipple);
                 };
                 if (!options.cancelAutomatically && !isTouchDevice())
                     for (const event of events)
-                        void self.addEventListener(event, cancelRipple);
+                        void self().addEventListener(event, cancelRipple);
                 else
                     setTimeout(
                         () => void cancelRippleAnimation(ripple, options),
@@ -184,6 +184,7 @@ function createRipple<T extends HTMLElement>(
     const { height, width, top, left } = ref.getBoundingClientRect();
     const maxHeight = Math.max(clientY - top, height - clientY + top);
     const maxWidth = Math.max(clientX - left, width - clientX + left);
+    // @ts-ignore
     const size = px(Math.hypot(maxHeight, maxWidth) * 2);
     const styles = [
         ["position", "absolute"],
@@ -254,7 +255,7 @@ function cancelRippleAnimation<T extends HTMLElement>(
 }
 
 function createRippleContainer(className: string) {
-    const container = self.createElement("div");
+    const container = self().createElement("div");
     void container.classList.add(className);
 
     return applyStyles(
