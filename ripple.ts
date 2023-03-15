@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef } from "react";
+import { useCallback, useRef } from "react";
 
 export type Options<T extends HTMLElement = any> = {
     duration: number;
