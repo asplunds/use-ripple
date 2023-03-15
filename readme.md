@@ -167,10 +167,10 @@ function App() {
     /* This will NOT work! Do not do this */
     return (
         <>
-            <button color="red" ref={ripple} onMouseDown={even}>
+            <button color="red" ref={ripple} onMouseDown={event}>
                 Button
             </button>
-            <button color="yellow" ref={ripple} onMouseDown={even}>
+            <button color="yellow" ref={ripple} onMouseDown={event}>
                 Button
             </button>
         </>
