@@ -24,7 +24,7 @@ function Button() {
     const [ripple, event] = useRipple();
 
     return (
-        <button ref={ripple} onMouseDown={event}>
+        <button ref={ripple} onPointerDown={event}>
             Default Ripple
         </button>
     );
@@ -116,7 +116,7 @@ function Button() {
     const [ripple, event] = useMyRipple({}); // Optionally override previous config
 
     return (
-        <button ref={ripple} onMouseDown={event}>
+        <button ref={ripple} onPointerDown={event}>
             Memoized Ripple
         </button>
     );
@@ -148,7 +148,7 @@ function Button({ color }) {
     const [ripple, event] = useRipple({ color });
 
     return (
-        <button ref={ripple} onMouseDown={event}>
+        <button ref={ripple} onPointerDown={event}>
             Button
         </button>
     );
@@ -167,10 +167,10 @@ function App() {
     /* This will NOT work! Do not do this */
     return (
         <>
-            <button color="red" ref={ripple} onMouseDown={event}>
+            <button color="red" ref={ripple} onPointerDown={event}>
                 Button
             </button>
-            <button color="yellow" ref={ripple} onMouseDown={event}>
+            <button color="yellow" ref={ripple} onPointerDown={event}>
                 Button
             </button>
         </>
