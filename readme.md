@@ -1,6 +1,7 @@
 # useRipple - Material UI ripple effect
 Fully customizable, lightweight React hook for implementing Google's Material UI style ripple effect
 
+# v1.1 breaking-changes vite-8 support added
 
 ![useRipple showcase GIF](https://i.imgur.com/8yu6uaR.gif "useRipple showcase")
 

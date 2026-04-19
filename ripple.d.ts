@@ -1,5 +1,4 @@
-/// <reference types="react" />
-export declare type Options<T extends HTMLElement = any> = {
+export type Options<T extends HTMLElement = any> = {
     duration: number;
     color: string;
     timingFunction: string;
@@ -22,7 +21,7 @@ export declare type Options<T extends HTMLElement = any> = {
     cancelAutomatically: boolean;
     ref: React.RefObject<T>;
 };
-export declare type MinimalEvent = {
+export type MinimalEvent = {
     clientX: number;
     clientY: number;
     nativeEvent?: {
@@ -45,4 +44,4 @@ export default function useRipple<T extends HTMLElement = any>(inputOptions?: Pa
  * @param inputOptions ripple options
  * @returns Custom HOC useRipple hook
  */
-export declare function customRipple<T extends HTMLElement = any>(inputOptions?: Partial<Omit<Options<T>, "ref">>): (overrideOptions?: Partial<Options<T>> | undefined) => readonly [import("react").RefObject<any>, (event: MinimalEvent) => void];
+export declare function customRipple<T extends HTMLElement = any>(inputOptions?: Partial<Omit<Options<T>, "ref">>): (overrideOptions?: Partial<Options<T>>) => readonly [import("react").RefObject<any>, (event: MinimalEvent) => void];
