@@ -48,7 +48,7 @@ const containerClassName = "__useRipple--ripple-container";
  * @param inputOptions Ripple options
  * @returns Tuple `[ref, event]`. See https://github.com/asplunds/use-ripple for usage
  */
-export default function useRipple<T extends HTMLElement = any>(inputOptions?: Partial<Options<T>>) {
+export function useRipple<T extends HTMLElement = any>(inputOptions?: Partial<Options<T>>) {
   const internalRef = useRef<T>(null);
   const { ref, ...options }: Options = {
     duration: 450,
@@ -256,6 +256,6 @@ function isTouchDevice(): boolean {
   return (
     "ontouchstart" in window ||
     navigator.maxTouchPoints > 0 ||
-    (((navigator as any)?.msMaxTouchPoints ?? 0) > 0)
+    ((navigator as any)?.msMaxTouchPoints ?? 0) > 0
   );
 }

@@ -12,17 +12,11 @@ Fully customizable, lightweight React hook for implementing Google's Material UI
 npm install use-ripple-hook
 ```
 
-or
-
-```
-yarn add use-ripple-hook
-```
-
 ## Usage
 
 ```tsx
 import React from "react";
-import useRipple from "use-ripple-hook";
+import { useRipple } from "use-ripple-hook";
 
 function Button() {
   const [ripple, event] = useRipple();
@@ -140,62 +134,14 @@ This is useful if you want to avoid repetition in your code or if you want multi
 
 ## Examples
 
-For examples of useRipple usage please click <a target="_blank" href="https://codesandbox.io/s/great-nash-zhyfm?file=/src/App.tsx">here</a>.
+A live CodeSandbox is available <a target="_blank" href="https://codesandbox.io/s/great-nash-zhyfm?file=/src/App.tsx">here</a>.
 
-## Dos and don'ts
+This repo also ships two runnable example apps under [`examples/`](./examples) that consume the package via the pnpm workspace:
 
-### ✔ Do this:
+- [`examples/vite-example`](./examples/vite-example) — Vite 8 + React 19.
+- [`examples/nextjs-example`](./examples/nextjs-example) — Next.js 15 (App Router). The hook lives in a `"use client"` component because it touches the DOM.
 
-Using components 👍
-
-```jsx
-import React from "react";
-import useRipple from "use-ripple-hook";
-
-function App() {
-  return (
-    <>
-      <Button color="red" />
-      <Button color="yellow" />
-    </>
-  );
-}
-
-function Button({ color }) {
-  const [ripple, event] = useRipple({ color });
-
-  return (
-    <button ref={ripple} onPointerDown={event}>
-      Button
-    </button>
-  );
-}
-```
-
-### ❌ Don't do this:
-
-Sharing references 👎
-
-```jsx
-import React from "react";
-import useRipple from "use-ripple-hook";
-
-function App() {
-  const [ripple, event] = useRipple();
-
-  /* This will NOT work! Do not do this */
-  return (
-    <>
-      <button color="red" ref={ripple} onPointerDown={event}>
-        Button
-      </button>
-      <button color="yellow" ref={ripple} onPointerDown={event}>
-        Button
-      </button>
-    </>
-  );
-}
-```
+See [`examples/README.md`](./examples/README.md) for setup instructions.
 
 ## Contributing
 

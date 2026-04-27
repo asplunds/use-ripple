@@ -6,13 +6,5 @@
   "printWidth": 100,
   "tabWidth": 2,
   "sortPackageJson": false,
-  "ignorePatterns": [
-    "node_modules",
-    "ripple.js",
-    "ripple.d.ts",
-    "pnpm-lock.yaml",
-    "**/.next",
-    "**/dist",
-    "**/.turbo"
-  ]
+  "ignorePatterns": ["node_modules", "pnpm-lock.yaml", "**/dist", "**/.next", "**/.turbo"]
 }

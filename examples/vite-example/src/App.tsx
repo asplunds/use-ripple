@@ -1,4 +1,4 @@
-import useRipple, { customRipple } from "use-ripple-hook";
+import { useRipple, customRipple } from "use-ripple-hook";
 
 const useGreenRipple = customRipple({
   color: "rgba(72, 187, 120, 0.5)",

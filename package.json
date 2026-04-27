@@ -1,16 +1,18 @@
 {
   "name": "use-ripple-hook",
-  "version": "1.1.25",
+  "version": "2.0.0",
   "type": "module",
   "repository": {
     "url": "https://github.com/asplunds/use-ripple"
   },
   "description": "Customizable, lightweight React hook for implementing Google's Material UI style ripple effect",
-  "main": "ripple.js",
-  "module": "ripple.js",
+  "main": "dist/ripple.js",
+  "module": "dist/ripple.js",
+  "types": "dist/ripple.d.ts",
+  "sideEffects": false,
   "scripts": {
     "prepack": "tsc --declaration",
-    "postpublish": "tsc --build --clean",
+    "postpublish": "rm -rf dist",
     "prepare": "husky",
     "typecheck": "tsc --noEmit",
     "lint": "oxlint",
@@ -27,20 +29,24 @@
   ],
   "exports": {
     ".": {
-      "types": "./ripple.d.ts",
-      "import": "./ripple.js",
-      "default": "./ripple.js"
+      "types": "./dist/ripple.d.ts",
+      "import": "./dist/ripple.js",
+      "default": "./dist/ripple.js"
     }
   },
   "author": "Jonathan Asplund",
   "license": "ISC",
-  "types": "./ripple.d.ts",
+  "engines": {
+    "node": ">=18"
+  },
   "files": [
-    "ripple.js",
-    "ripple.d.ts",
-    "ripple.ts",
-    "readme.md"
+    "dist",
+    "readme.md",
+    "LICENSE"
   ],
+  "peerDependencies": {
+    "react": "^17.0.0 || ^18.0.0 || ^19.0.0"
+  },
   "devDependencies": {
     "@types/react": "catalog:",
     "husky": "catalog:",

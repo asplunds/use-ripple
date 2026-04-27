@@ -14,7 +14,7 @@ Package manager: pnpm (see `pnpm-lock.yaml`). Workspace with three packages: roo
 - `pnpm typecheck` — `tsc --noEmit` against `ripple.ts` (the root tsconfig pins `include: ["ripple.ts"]`).
 - `pnpm lint` — `oxlint` over the repo (warnings don't fail the script).
 - `pnpm format` / `pnpm format:check` — `oxfmt` (config in `.oxfmtrc.json`, ignore patterns inline; `oxfmt` also reads `.gitignore`).
-- `pnpm pack` / `pnpm publish` — runs `prepack` (`tsc --declaration`) which compiles `ripple.ts` → `ripple.js` + `ripple.d.ts`, then `postpublish` cleans the build outputs. The `files` allowlist in `package.json` keeps the publish payload to `ripple.{js,d.ts,ts}` + `readme.md` + `package.json`.
+- `pnpm pack` / `pnpm publish` — runs `prepack` (`tsc --declaration`) which compiles `ripple.ts` → `dist/ripple.js` + `dist/ripple.d.ts`, then `postpublish` runs `rm -rf dist`. `dist/` is gitignored. The `files` allowlist keeps the publish payload to `dist/`, `readme.md`, `LICENSE`, and `package.json`.
 
 The pre-commit hook (`.husky/pre-commit`) runs `pnpm typecheck && pnpm lint`. Husky 9 is wired via `core.hooksPath = .husky/_`.
 
@@ -40,11 +40,12 @@ Key behaviors that aren't obvious:
 - `examples/vite-example` — Vite 8 + React 19.
 - `examples/nextjs-example` — Next 15 App Router. The hook lives in a `"use client"` component (`app/RippleDemo.tsx`) since it touches the DOM. `next.config.mjs` includes `transpilePackages: ["use-ripple-hook"]` so Next normalizes the workspace package's ESM output.
 
-Both rely on `ripple.js` / `ripple.d.ts` existing — run `pnpm run prepack` at the repo root before `pnpm dev` in an example. Re-run after editing `ripple.ts`.
+Both rely on `dist/ripple.js` / `dist/ripple.d.ts` existing — each example has a `predev`/`prebuild` script that runs the parent's `prepack` automatically.
 
 The root `tsconfig.json` pins `"include": ["ripple.ts"]` so `prepack` doesn't accidentally compile the example sources.
 
 ## Publishing notes
 
-- `package.json` `main`/`module`/`exports`/`types` all point to compiled artifacts (`ripple.js`, `ripple.d.ts`) that only exist after `prepack`. Don't commit them — `.gitignore` doesn't list them, but they're regenerated each publish.
-- Version bumps are manual edits to `package.json`. The README's "v1.1 breaking-changes vite-8 support added" line tracks the latest notable change.
+- `package.json` `main`/`module`/`exports`/`types` all point to `dist/`, which only exists after `prepack`. `dist/` is gitignored. Examples invoke `prepack` automatically via their `predev` script.
+- React is a peer dep (`^17 || ^18 || ^19`). `sideEffects: false` is set so bundlers can tree-shake.
+- Version bumps are manual edits to `package.json`.
