@@ -60,7 +60,7 @@ export default function useRipple<T extends HTMLElement = any>(inputOptions?: Pa
     containerClassName,
     ignoreNonLeftClick: true,
     ref: internalRef,
-    ...(inputOptions ?? {}),
+    ...inputOptions,
   };
 
   const event = useCallback(
