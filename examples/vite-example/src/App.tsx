@@ -21,18 +21,10 @@ export default function App() {
         <button ref={defaultRef} onPointerDown={defaultEvent}>
           Default ripple
         </button>
-        <button
-          ref={redRef}
-          onPointerDown={redEvent}
-          className="red"
-        >
+        <button ref={redRef} onPointerDown={redEvent} className="red">
           Red ripple (per-call options)
         </button>
-        <button
-          ref={greenRef}
-          onPointerDown={greenEvent}
-          className="green"
-        >
+        <button ref={greenRef} onPointerDown={greenEvent} className="green">
           customRipple (green)
         </button>
       </div>
