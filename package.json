@@ -6,12 +6,12 @@
     "url": "https://github.com/asplunds/use-ripple"
   },
   "description": "Customizable, lightweight React hook for implementing Google's Material UI style ripple effect",
-  "main": "dist/ripple.js",
-  "module": "dist/ripple.js",
-  "types": "dist/ripple.d.ts",
+  "main": "dist/cjs/ripple.js",
+  "module": "dist/esm/ripple.js",
+  "types": "dist/esm/ripple.d.ts",
   "sideEffects": false,
   "scripts": {
-    "prepack": "tsc --declaration",
+    "prepack": "tsc -p tsconfig.esm.json && tsc -p tsconfig.cjs.json && echo '{\"type\":\"commonjs\"}' > dist/cjs/package.json",
     "postpublish": "rm -rf dist",
     "prepare": "husky",
     "typecheck": "tsc --noEmit",
@@ -29,9 +29,14 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/ripple.d.ts",
-      "import": "./dist/ripple.js",
-      "default": "./dist/ripple.js"
+      "import": {
+        "types": "./dist/esm/ripple.d.ts",
+        "default": "./dist/esm/ripple.js"
+      },
+      "require": {
+        "types": "./dist/cjs/ripple.d.ts",
+        "default": "./dist/cjs/ripple.js"
+      }
     }
   },
   "author": "Jonathan Asplund",

@@ -14,7 +14,7 @@ Package manager: pnpm (see `pnpm-lock.yaml`). Workspace with three packages: roo
 - `pnpm typecheck` — `tsc --noEmit` against `ripple.ts` (the root tsconfig pins `include: ["ripple.ts"]`).
 - `pnpm lint` — `oxlint` over the repo (warnings don't fail the script).
 - `pnpm format` / `pnpm format:check` — `oxfmt` (config in `.oxfmtrc.json`, ignore patterns inline; `oxfmt` also reads `.gitignore`).
-- `pnpm pack` / `pnpm publish` — runs `prepack` (`tsc --declaration`) which compiles `ripple.ts` → `dist/ripple.js` + `dist/ripple.d.ts`, then `postpublish` runs `rm -rf dist`. `dist/` is gitignored. The `files` allowlist keeps the publish payload to `dist/`, `readme.md`, `LICENSE`, and `package.json`.
+- `pnpm pack` / `pnpm publish` — runs `prepack`, which builds **both** module formats: `tsc -p tsconfig.esm.json` → `dist/esm/`, then `tsc -p tsconfig.cjs.json` → `dist/cjs/`, then writes `dist/cjs/package.json` containing `{"type":"commonjs"}` so Node treats those `.js` as CJS (the root `package.json` is `"type": "module"`). `postpublish` runs `rm -rf dist`. `dist/` is gitignored. The `files` allowlist keeps the publish payload to `dist/`, `readme.md`, `LICENSE`, and `package.json`.
 
 The pre-commit hook (`.husky/pre-commit`) runs `pnpm typecheck && pnpm lint`. Husky 9 is wired via `core.hooksPath = .husky/_`.
 
@@ -46,6 +46,7 @@ The root `tsconfig.json` pins `"include": ["ripple.ts"]` so `prepack` doesn't ac
 
 ## Publishing notes
 
-- `package.json` `main`/`module`/`exports`/`types` all point to `dist/`, which only exists after `prepack`. `dist/` is gitignored. Examples invoke `prepack` automatically via their `predev` script.
+- Dual package: the `exports` map advertises `import` → `dist/esm/ripple.js` and `require` → `dist/cjs/ripple.js`, each with its own `types` entry. `main` points at the CJS build (Node fallback for tools that ignore `exports`), `module` at the ESM build, top-level `types` at the ESM `.d.ts`.
+- `tsconfig.cjs.json` uses `moduleResolution: "node10"` with `ignoreDeprecations: "6.0"` because TS 6 deprecated the legacy `node`/`node10` strategy but it's still the right pairing for emitting CJS.
 - React is a peer dep (`^17 || ^18 || ^19`). `sideEffects: false` is set so bundlers can tree-shake.
 - Version bumps are manual edits to `package.json`.
