@@ -1,0 +1,25 @@
+{
+  "name": "use-ripple-nextjs-example",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "predev": "pnpm --filter use-ripple-hook run prepack",
+    "prebuild": "pnpm --filter use-ripple-hook run prepack",
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "next": "catalog:",
+    "react": "catalog:",
+    "react-dom": "catalog:",
+    "use-ripple-hook": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "catalog:",
+    "@types/react": "catalog:",
+    "@types/react-dom": "catalog:",
+    "typescript": "catalog:"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "name": "use-ripple-vite-example",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "predev": "pnpm --filter use-ripple-hook run prepack",
+    "prebuild": "pnpm --filter use-ripple-hook run prepack",
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "react": "catalog:",
+    "react-dom": "catalog:",
+    "use-ripple-hook": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/react": "catalog:",
+    "@types/react-dom": "catalog:",
+    "@vitejs/plugin-react": "catalog:",
+    "typescript": "catalog:",
+    "vite": "catalog:"
+  }
+}

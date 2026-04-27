@@ -1,1 +1,3 @@
 node_modules/**/*
+ripple.js
+ripple.d.ts

@@ -1,6 +1,6 @@
 {
   "name": "use-ripple-hook",
-  "version": "1.1.0",
+  "version": "1.1.25",
   "type": "module",
   "repository": {
     "url": "https://github.com/asplunds/use-ripple"
@@ -10,7 +10,12 @@
   "module": "ripple.js",
   "scripts": {
     "prepack": "tsc --declaration",
-    "postpublish": "tsc --build --clean"
+    "postpublish": "tsc --build --clean",
+    "prepare": "husky",
+    "typecheck": "tsc --noEmit",
+    "lint": "oxlint",
+    "format": "oxfmt",
+    "format:check": "oxfmt --check"
   },
   "keywords": [
     "useripple",
@@ -30,8 +35,17 @@
   "author": "Jonathan Asplund",
   "license": "ISC",
   "types": "./ripple.d.ts",
+  "files": [
+    "ripple.js",
+    "ripple.d.ts",
+    "ripple.ts",
+    "readme.md"
+  ],
   "devDependencies": {
-    "@types/react": "^19.2.0",
-    "typescript": "^6.0.0"
+    "@types/react": "catalog:",
+    "husky": "catalog:",
+    "oxfmt": "catalog:",
+    "oxlint": "catalog:",
+    "typescript": "catalog:"
   }
 }
